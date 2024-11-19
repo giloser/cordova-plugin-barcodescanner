@@ -546,6 +546,22 @@ parentViewController:(UIViewController*)parentViewController
     self.previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:captureSession];
     self.previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
 
+    //GWE 19/11/2024
+    // Assume `overlayRect` is the CGRect for the overlay (already defined)
+    CGRect overlayRect = self.overlayView.frame;
+    // Get the camera preview layer's dimensions
+    CGRect previewBounds = self.previewLayer.bounds;
+    
+    // Normalize the overlay dimensions to the preview layer
+    CGFloat x = overlayRect.origin.x / previewBounds.size.width;
+    CGFloat y = overlayRect.origin.y / previewBounds.size.height;
+    CGFloat width = overlayRect.size.width / previewBounds.size.width;
+    CGFloat height = overlayRect.size.height / previewBounds.size.height;
+    
+    // Set the rectOfInterest to match the overlay
+    AVCaptureMetadataOutput.rectOfInterest = CGRectMake(y, x, height, width); // Note the swap of x/y and width/height
+    //GWE 19/11/2024
+    
     // run on next event loop pass [captureSession startRunning]
     [captureSession performSelector:@selector(startRunning) withObject:nil afterDelay:0];
 

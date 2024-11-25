@@ -563,9 +563,21 @@ parentViewController:(UIViewController*)parentViewController
 
     output.rectOfInterest = rectOfInterest;
 
-    // Setup capture preview layer
+     // Setup capture preview layer
     self.previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:captureSession];
     self.previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+    self.previewLayer.frame = self.view.bounds;
+    [self.view.layer addSublayer:self.previewLayer];
+
+    // Add green box overlay
+    UIImage *reticleImage = [self buildReticleImage];
+    UIImageView *reticleView = [[UIImageView alloc] initWithImage:reticleImage];
+    reticleView.frame = CGRectMake(self.view.bounds.size.width * rectOfInterest.origin.x,
+                                   self.view.bounds.size.height * rectOfInterest.origin.y,
+                                   self.view.bounds.size.width * rectOfInterest.size.width,
+                                   self.view.bounds.size.height * rectOfInterest.size.height);
+    reticleView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:reticleView];
     //GWE 19/11/2024
     
     // run on next event loop pass [captureSession startRunning]

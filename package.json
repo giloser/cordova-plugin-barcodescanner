@@ -1,9 +1,9 @@
 {
-  "name": "@red-mobile/cordova-plugin-barcodescanner",
-  "version": "9.1.0",
+  "name": "@giloser/cordova-plugin-barcodescanner",
+  "version": "9.2.0",
   "description": "You can use the BarcodeScanner plugin to scan different types of barcodes (using the device's camera) and get the metadata encoded in them for processing within your application.",
   "cordova": {
-    "id": "@red-mobile/cordova-plugin-barcodescanner",
+    "id": "@giloser/cordova-plugin-barcodescanner",
     "platforms": [
       "android"
     ]
@@ -20,9 +20,9 @@
   "author": "Adobe PhoneGap Team",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/okhiroyuki/cordova-plugin-barcodescanner/issues"
+    "url": "https://github.com/giloser/cordova-plugin-barcodescanner/issues"
   },
-  "homepage": "https://github.com/okhiroyuki/cordova-plugin-barcodescanner#readme",
+  "homepage": "https://github.com/giloser/cordova-plugin-barcodescanner#readme",
   "scripts": {
     "test": "npx jasmine"
   },

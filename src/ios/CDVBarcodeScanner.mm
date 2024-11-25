@@ -566,7 +566,7 @@ parentViewController:(UIViewController*)parentViewController
      // Setup capture preview layer
     self.previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:captureSession];
     self.previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
-    self.previewLayer.frame = self.view.bounds;
+    self.previewLayer.frame = self.parentViewController.view.bounds;
     [self.view.layer addSublayer:self.previewLayer];
 
     // Add green box overlay
@@ -577,7 +577,7 @@ parentViewController:(UIViewController*)parentViewController
                                    self.view.bounds.size.width * rectOfInterest.size.width,
                                    self.view.bounds.size.height * rectOfInterest.size.height);
     reticleView.backgroundColor = [UIColor clearColor];
-    [self.view addSubview:reticleView];
+    [self.parentViewController.view addSubview:reticleView];
     //GWE 19/11/2024
     
     // run on next event loop pass [captureSession startRunning]

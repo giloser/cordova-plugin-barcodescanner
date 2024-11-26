@@ -549,40 +549,24 @@ parentViewController:(UIViewController*)parentViewController
 
     
     //GWE 19/11/2024
-    // Calculate rectOfInterest from green box dimensions
-    CGFloat width = RETICLE_SIZE - 2 * RETICLE_OFFSET;
-    CGFloat height = RETICLE_SIZE - 2 * RETICLE_OFFSET;
-    CGFloat x = RETICLE_OFFSET;
-    CGFloat y = RETICLE_OFFSET;
-
     // Normalize to preview layer (assuming full-screen preview)
-    CGRect rectOfInterest = CGRectMake(x / RETICLE_SIZE,
-                                       y / RETICLE_SIZE,
-                                       width / RETICLE_SIZE,
-                                       height / RETICLE_SIZE);
-
-    output.rectOfInterest = rectOfInterest;
-
-     // Setup capture preview layer
-    self.previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:captureSession];
-    self.previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
-    self.previewLayer.frame = self.parentViewController.view.bounds;
-    [self.view.layer addSublayer:self.previewLayer];
-
-    // Add green box overlay
-    UIImage *reticleImage = [self buildReticleImage];
-    UIImageView *reticleView = [[UIImageView alloc] initWithImage:reticleImage];
-    reticleView.frame = CGRectMake(self.view.bounds.size.width * rectOfInterest.origin.x,
-                                   self.view.bounds.size.height * rectOfInterest.origin.y,
-                                   self.view.bounds.size.width * rectOfInterest.size.width,
-                                   self.view.bounds.size.height * rectOfInterest.size.height);
-    reticleView.backgroundColor = [UIColor clearColor];
-    [self.parentViewController.view addSubview:reticleView];
+    CGRect rectOfInterest = CGRectMake(0.20,
+                                       0.20,
+                                       0.60,
+                                       0.60);
     //GWE 19/11/2024
     
     // run on next event loop pass [captureSession startRunning]
     [captureSession performSelector:@selector(startRunning) withObject:nil afterDelay:0];
 
+    //GWE 19/11/2024
+    output.rectOfInterest = rectOfInterest;
+    //GWE 19/11/2024
+    
+     // Setup capture preview layer
+    self.previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:captureSession];
+    self.previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+    
     return nil;
 }
 

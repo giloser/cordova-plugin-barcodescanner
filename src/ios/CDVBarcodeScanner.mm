@@ -549,11 +549,21 @@ parentViewController:(UIViewController*)parentViewController
 
     
     //GWE 19/11/2024
+    CGFloat test = self.viewController.view.bounds.size.height;
+    CGFloat test2 = self.viewController.view.bounds.size.width;
+    CGRect screenRect = UIScreen.mainScreen.bounds;
+    
+    CGFloat width = screenRect.size.width;
+    CGFloat height = screenRect.size.height;
+    
+    CGFloat lim = width / height;
+    lim = lim + 0.10;
+    
     // Normalize to preview layer (assuming full-screen preview)
     CGRect rectOfInterest = CGRectMake(0.20,
                                        0.20,
-                                       0.60,
-                                       0.60);
+                                       lim,
+                                       1);
     //GWE 19/11/2024
     
     // run on next event loop pass [captureSession startRunning]
